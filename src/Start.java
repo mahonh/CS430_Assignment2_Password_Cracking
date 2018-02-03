@@ -7,10 +7,13 @@ public class Start
     public static ArrayList<String> dictionaryWords = new ArrayList<String>();
     public static ArrayList<String> mangledDictionaryWords = new ArrayList<String>();
     public static ArrayList<String> userNameMangles = new ArrayList<String>();
+
     public static ArrayList<User> users = new ArrayList<User>();
     public static ArrayList<String> keys = new ArrayList<String>();
+
     public static String dictionary = "Given/wordlist.txt";
     public static String key = "Resources/Keys.txt";
+
     public static long startTime;
 
     public static void main(String args[])
@@ -22,9 +25,80 @@ public class Start
         readUsersFile(file);
         readKeyFile(key);
 
+        dictionaryAttack();
     }
 
-    public static void wordMangler(String word)
+    public static void dictionaryAttack()
+    {
+        startTime = System.currentTimeMillis();
+
+        for (String y : dictionaryWords)
+        {
+            StringBuilder reverse = new StringBuilder();
+            reverse.append(y);
+
+            wordMangler(y, mangledDictionaryWords);
+            wordMangler(reverse.reverse().toString(), mangledDictionaryWords);
+        }
+
+        for (User g : users)
+        {
+            wordMangler(g.getFirstName(), userNameMangles);
+            wordMangler(g.getLastName(), userNameMangles);
+
+            StringBuilder reverse = new StringBuilder();
+            reverse.append(g);
+            wordMangler(reverse.reverse().toString(), userNameMangles);
+        }
+
+        System.out.println(System.currentTimeMillis() - startTime);
+        startTime = System.currentTimeMillis();
+
+        for (User x : users)
+        {
+            String password = x.getHashedPassword();
+            String salt = x.getSalt();
+
+            boolean notfound = true;
+
+            masterloop:
+            while (notfound)
+            {
+                for (String u : userNameMangles)
+                {
+                    String temp = jcrypt.crypt(salt, u);
+
+                    if (temp.equals(salt + password))
+                    {
+                        System.out.println(x.getUserName());
+                        notfound = false;
+                        break masterloop;
+                    }
+                }
+
+                for (String z : mangledDictionaryWords)
+                {
+                    String temp = jcrypt.crypt(salt, z);
+
+                    if (temp.equals(salt + password))
+                    {
+                        System.out.println(x.getUserName());
+                        notfound = false;
+                        break masterloop;
+                    }
+                }
+                notfound = false;
+            }
+        }
+        System.out.println(System.currentTimeMillis() - startTime);
+    }
+
+    public static void bruteForceAttack()
+    {
+
+    }
+
+    public static void wordMangler(String word, ArrayList<String> list)
     {
         StringBuilder reverse = new StringBuilder();
         StringBuilder forward = new StringBuilder();
@@ -32,32 +106,35 @@ public class Start
         StringBuilder upFirst = new StringBuilder();
         StringBuilder lowFirst = new StringBuilder();
 
+        list.add(word);
+
         for (String s : keys)
         {
-            mangledDictionaryWords.add(word + s);
-            mangledDictionaryWords.add(s + word);
+            list.add(word + s);
+            list.add(s + word);
         }
 
-        mangledDictionaryWords.add(word.substring(1)); //remove first character
-        mangledDictionaryWords.add(word.substring(0, word.length() - 1)); //remove last character
+        list.add(word.substring(1)); //remove first character
+        list.add(word.substring(0, word.length() - 1)); //remove last character
 
         reverse.append(word);
         reverse.reverse();
-        mangledDictionaryWords.add(reverse.toString()); //reverse word
+        list.add(reverse.toString()); //reverse word
 
         forward.append(word);
-        mangledDictionaryWords.add(forward.toString() + word); //duplicate word
+        list.add(forward.toString() + word); //duplicate word
 
-        mangledDictionaryWords.add(forward.toString() + reverse.toString()); //forward reflect
-        mangledDictionaryWords.add(reverse.toString() + forward.toString()); //reverse reflect
+        list.add(forward.toString() + reverse.toString()); //forward reflect
+        list.add(reverse.toString() + forward.toString()); //reverse reflect
 
-        mangledDictionaryWords.add(word.toUpperCase());
-        mangledDictionaryWords.add(word.toLowerCase());
+        list.add(word.toUpperCase());
+        list.add(word.toLowerCase());
 
-        mangledDictionaryWords.add(word.substring(0, 1).toUpperCase() + word.substring(1)); //capitalize first letter
+        list.add(word.substring(0, 1).toUpperCase() + word.substring(1)); //capitalize first letter
 
-        mangledDictionaryWords.add(word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase()); //capitalize all except first
+        list.add(word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase()); //capitalize all except first
 
+        list.add(word.substring(0, word.length() - 1).toLowerCase() + word.substring(word.length() - 1, word.length()).toUpperCase());
 
         for (int i = 0; i < word.length(); i++)
         {
@@ -74,8 +151,8 @@ public class Start
                 }
         }
 
-        mangledDictionaryWords.add(upFirst.toString());
-        mangledDictionaryWords.add(lowFirst.toString());
+        list.add(upFirst.toString());
+        list.add(lowFirst.toString());
     }
 
     public static void readDictionary()
