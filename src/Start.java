@@ -139,6 +139,8 @@ public class Start
                                                          // symbol added to the start
         }
 
+        String temp;
+
         list.add(word.substring(1)); //remove first character
         list.add(word.substring(0, word.length() - 1)); //remove last character
 
@@ -146,10 +148,18 @@ public class Start
         reverse.reverse();
 
         forward.append(word);
-        list.add(forward.toString() + word); //duplicate word
 
-        list.add(forward.toString() + reverse.toString()); //forward reflect
-        list.add(reverse.toString() + forward.toString()); //reverse reflect
+        temp = forward.toString() + word; //duplicate word
+        list.add(temp);
+        manglerCapitalizationHelper(temp, list);
+
+        temp = forward.toString() + reverse.toString(); //forward reflect
+        list.add(temp);
+        manglerCapitalizationHelper(temp, list);
+
+        temp = reverse.toString() + forward.toString(); //reverse reflect
+        list.add(temp);
+        manglerCapitalizationHelper(temp, list);
 
         //rules for vowels and odd symbols
         list.add(word.replace('e', '3'));
