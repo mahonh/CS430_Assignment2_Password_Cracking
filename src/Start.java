@@ -123,15 +123,21 @@ public class Start
         StringBuilder reverse = new StringBuilder();
         StringBuilder forward = new StringBuilder();
 
-        StringBuilder upFirst = new StringBuilder();
-        StringBuilder lowFirst = new StringBuilder();
+//        StringBuilder upFirst = new StringBuilder();
+//        StringBuilder lowFirst = new StringBuilder();
 
         list.add(word); //add basic word to list
 
         for (String s : keys) //adds single symbol to start and end of words
         {
-            list.add(word + s);
-            list.add(s + word);
+            String wordFirst = word + s;
+            String wordLast = s + word;
+
+            list.add(wordFirst);
+            list.add(wordLast);
+
+            manglerCapitalizationHelper(wordFirst, list);
+            manglerCapitalizationHelper(wordLast, list);
         }
 
         list.add(word.substring(1)); //remove first character
@@ -157,6 +163,50 @@ public class Start
         list.add(word.replace('A', '@'));
         list.add(word.replace('s', '$'));
         list.add(word.replace('S', '$'));
+
+        manglerCapitalizationHelper(word, list);
+
+//        list.add(word.toUpperCase()); //all uppercase
+//        list.add(word.toLowerCase()); //all lowercase
+//
+//        list.add(word.substring(0, 1).toUpperCase() + word.substring(1)); //capitalize first character
+//
+//        list.add(word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase()); //capitalize all except first character
+//
+//        list.add(word.substring(0, word.length() - 1).toLowerCase()
+//                + word.substring(word.length() - 1, word.length()).toUpperCase()); //capitalize only the last character
+//
+//        list.add(word.substring(0, 1).toUpperCase() + word.substring(1, word.length() - 1).toLowerCase()
+//                + word.substring(word.length() - 1, word.length()).toUpperCase()); //capitalize only first and last characters
+//
+//        list.add(word.substring(0, 1).toLowerCase() + word.substring(1, word.length() -  1).toUpperCase()
+//                + word.substring(word.length() - 1, word.length()).toLowerCase());  //capitalize everything except first
+//                                                                                    // and last characters
+//
+//        //alternating capitalization
+//        for (int i = 0; i < word.length(); i++)
+//        {
+//            if (i % 2 == 0)
+//            {
+//                lowFirst.append(word.substring(i, i + 1).toLowerCase());
+//                upFirst.append(word.substring(i, i + 1).toUpperCase());
+//            }
+//
+//            else
+//                {
+//                    lowFirst.append(word.substring(i, i + 1).toUpperCase());
+//                    upFirst.append(word.substring(i, i + 1).toLowerCase());
+//                }
+//        }
+//
+//        list.add(upFirst.toString());
+//        list.add(lowFirst.toString());
+    }
+
+    private static void manglerCapitalizationHelper(String word, ArrayList<String> list)
+    {
+        StringBuilder upFirst = new StringBuilder();
+        StringBuilder lowFirst = new StringBuilder();
 
         list.add(word.toUpperCase()); //all uppercase
         list.add(word.toLowerCase()); //all lowercase
@@ -185,10 +235,10 @@ public class Start
             }
 
             else
-                {
-                    lowFirst.append(word.substring(i, i + 1).toUpperCase());
-                    upFirst.append(word.substring(i, i + 1).toLowerCase());
-                }
+            {
+                lowFirst.append(word.substring(i, i + 1).toUpperCase());
+                upFirst.append(word.substring(i, i + 1).toLowerCase());
+            }
         }
 
         list.add(upFirst.toString());
