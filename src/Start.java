@@ -196,54 +196,6 @@ public class Start
     }
 
     /**
-     * Brute force algorithm. Goes through every possible combination of 8 byte passwords.
-     * Only used if the Dictionary Attack did not produce results.
-     */
-    public static void bruteForceAttack()
-    {
-        System.out.println("\nBRUTE FORCE ATTACK\n");
-        for (User x : bruteForceUsers)
-        {
-            String password = x.getHashedPassword();
-            String salt = x.getSalt();
-
-            for (int a = 0; a < keys.size(); a++)
-            {
-                for (int b = 0; b < keys.size(); b++)
-                {
-                    for (int c = 0; c < keys.size(); c++)
-                    {
-                        for (int d = 0; d < keys.size(); d++)
-                        {
-                            for (int e = 0; e < keys.size(); e++)
-                            {
-                                for (int f = 0; f < keys.size(); f++)
-                                {
-                                    for (int g = 0; g < keys.size(); g++)
-                                    {
-                                        for (int h = 0; h < keys.size(); h++)
-                                        {
-                                            String current = keys.get(a) + keys.get(b) + keys.get(c) + keys.get(d) + keys.get(e)
-                                                    + keys.get(f) + keys.get(g) + keys.get(h);
-
-                                            String temp = jcrypt.crypt(salt, current);
-
-                                            if (temp.equals(salt + password))
-                                            {
-                                                System.out.println(x.getUserName());
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
      * Reads the dictionary file into an ArrayList
      */
     private static void readDictionary()
@@ -297,6 +249,219 @@ public class Start
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Brute force algorithm. Goes through every possible combination of 8 byte passwords.
+     * Only used if the Dictionary Attack did not produce results.
+     */
+    public static void bruteForceAttack()
+    {
+        System.out.println("\nBRUTE FORCE ATTACK\n");
+
+        masterloop:
+        for (User x : bruteForceUsers)
+        {
+            String password = x.getHashedPassword();
+            String salt = x.getSalt();
+
+            for (int z = 0; z < keys.size(); z++)
+            {
+                String current = keys.get(z);
+
+                String temp = jcrypt.crypt(salt, current);
+
+                if (temp.equals(salt + password))
+                {
+                    System.out.println("User: " + x.getUserName() + " Password: " + current);
+                    break masterloop;
+                }
+            }
+            System.out.println("One length character passwords complete");
+
+            for (int m = 0; m < keys.size(); m++)
+            {
+                for (int z = 0; z < keys.size(); z++)
+                {
+                    String current = keys.get(m) + keys.get(z);
+
+                    String temp = jcrypt.crypt(salt, current);
+
+                    if (temp.equals(salt + password))
+                    {
+                        System.out.println("User: " + x.getUserName() + " Password: " + current);
+                        break masterloop;
+                    }
+                }
+            }
+            System.out.println("Two length character passwords complete");
+
+            for (int n = 0; n < keys.size(); n++)
+            {
+                for (int p = 0; p < keys.size(); p++)
+                {
+                    for (int z = 0; z < keys.size(); z++)
+                    {
+                        String current = keys.get(n) + keys.get(p) + keys.get(z);
+
+                        String temp = jcrypt.crypt(salt, current);
+
+                        if (temp.equals(salt + password))
+                        {
+                            System.out.println("User: " + x.getUserName() + " Password: " + current);
+                            break masterloop;
+                        }
+                    }
+                }
+            }
+            System.out.println("Three length character passwords complete");
+
+            for (int q = 0; q < keys.size(); q++)
+            {
+                for (int n = 0; n < keys.size(); n++)
+                {
+                    for (int p = 0; p < keys.size(); p++)
+                    {
+                        for (int z = 0; z < keys.size(); z++)
+                        {
+                            String current = keys.get(q) + keys.get(n) + keys.get(p) + keys.get(z);
+
+                            String temp = jcrypt.crypt(salt, current);
+
+                            if (temp.equals(salt + password))
+                            {
+                                System.out.println("User: " + x.getUserName() + " Password: " + current);
+                                break masterloop;
+                            }
+                        }
+                    }
+                }
+            }
+            System.out.println("Four length character passwords complete");
+
+            for (int u = 0; u < keys.size(); u++)
+            {
+                for (int q = 0; q < keys.size(); q++)
+                {
+                    for (int n = 0; n < keys.size(); n++)
+                    {
+                        for (int p = 0; p < keys.size(); p++)
+                        {
+                            for (int z = 0; z < keys.size(); z++)
+                            {
+                                String current = keys.get(u) + keys.get(q) + keys.get(n) + keys.get(p) + keys.get(z);
+
+                                String temp = jcrypt.crypt(salt, current);
+
+                                if (temp.equals(salt + password))
+                                {
+                                    System.out.println("User: " + x.getUserName() + " Password: " + current);
+                                    break masterloop;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            System.out.println("Five length character passwords complete");
+
+            for (int w = 0; w < keys.size(); w++)
+            {
+                for (int u = 0; u < keys.size(); u++)
+                {
+                    for (int q = 0; q < keys.size(); q++)
+                    {
+                        for (int n = 0; n < keys.size(); n++)
+                        {
+                            for (int p = 0; p < keys.size(); p++)
+                            {
+                                for (int z = 0; z < keys.size(); z++)
+                                {
+                                    String current = keys.get(w) + keys.get(u) + keys.get(q) + keys.get(n) + keys.get(p) + keys.get(z);
+
+                                    String temp = jcrypt.crypt(salt, current);
+
+                                    if (temp.equals(salt + password))
+                                    {
+                                        System.out.println("User: " + x.getUserName() + " Password: " + current);
+                                        break masterloop;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            System.out.println("Six length character passwords complete");
+
+            for (int g = 0; g < keys.size(); g++)
+            {
+                for (int w = 0; w < keys.size(); w++)
+                {
+                    for (int u = 0; u < keys.size(); u++)
+                    {
+                        for (int q = 0; q < keys.size(); q++)
+                        {
+                            for (int n = 0; n < keys.size(); n++)
+                            {
+                                for (int p = 0; p < keys.size(); p++)
+                                {
+                                    for (int z = 0; z < keys.size(); z++)
+                                    {
+                                        String current = keys.get(g) + keys.get(w) + keys.get(u) + keys.get(q) + keys.get(n) + keys.get(p) + keys.get(z);
+
+                                        String temp = jcrypt.crypt(salt, current);
+
+                                        if (temp.equals(salt + password))
+                                        {
+                                            System.out.println("User: " + x.getUserName() + " Password: " + current);
+                                            break masterloop;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            System.out.println("Seven length character passwords complete");
+
+            for (int a = 0; a < keys.size(); a++)
+            {
+                for (int b = 0; b < keys.size(); b++)
+                {
+                    for (int c = 0; c < keys.size(); c++)
+                    {
+                        for (int d = 0; d < keys.size(); d++)
+                        {
+                            for (int e = 0; e < keys.size(); e++)
+                            {
+                                for (int f = 0; f < keys.size(); f++)
+                                {
+                                    for (int g = 0; g < keys.size(); g++)
+                                    {
+                                        for (int h = 0; h < keys.size(); h++)
+                                        {
+                                            String current = keys.get(a) + keys.get(b) + keys.get(c) + keys.get(d) + keys.get(e)
+                                                    + keys.get(f) + keys.get(g) + keys.get(h);
+
+                                            String temp = jcrypt.crypt(salt, current);
+
+                                            if (temp.equals(salt + password))
+                                            {
+                                                System.out.println("User: " + x.getUserName() + " Password: " + current);
+                                                break masterloop;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            System.out.println("Eight length character passwords complete");
         }
     }
 }
