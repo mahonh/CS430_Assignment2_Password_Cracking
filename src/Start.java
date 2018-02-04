@@ -291,12 +291,13 @@ public class Start
 
                 if (temp.equals(salt + password))
                 {
-                    System.out.println("User: " + x.getUserName() + " Password: " + current);
-                    break masterloop;
+                    System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                    break;
                 }
             }
             System.out.println("One length character passwords complete");
 
+            twoloop:
             for (int m = 0; m < keys.size(); m++)
             {
                 for (int z = 0; z < keys.size(); z++)
@@ -307,13 +308,14 @@ public class Start
 
                     if (temp.equals(salt + password))
                     {
-                        System.out.println("User: " + x.getUserName() + " Password: " + current);
-                        break masterloop;
+                        System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                        break twoloop;
                     }
                 }
             }
             System.out.println("Two length character passwords complete");
 
+            threeloop:
             for (int n = 0; n < keys.size(); n++)
             {
                 for (int p = 0; p < keys.size(); p++)
@@ -326,14 +328,15 @@ public class Start
 
                         if (temp.equals(salt + password))
                         {
-                            System.out.println("User: " + x.getUserName() + " Password: " + current);
-                            break masterloop;
+                            System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                            break threeloop;
                         }
                     }
                 }
             }
             System.out.println("Three length character passwords complete");
 
+            fourloop:
             for (int q = 0; q < keys.size(); q++)
             {
                 for (int n = 0; n < keys.size(); n++)
@@ -348,8 +351,8 @@ public class Start
 
                             if (temp.equals(salt + password))
                             {
-                                System.out.println("User: " + x.getUserName() + " Password: " + current);
-                                break masterloop;
+                                System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                                break fourloop;
                             }
                         }
                     }
@@ -357,6 +360,7 @@ public class Start
             }
             System.out.println("Four length character passwords complete");
 
+            fiveloop:
             for (int u = 0; u < keys.size(); u++)
             {
                 for (int q = 0; q < keys.size(); q++)
@@ -373,8 +377,8 @@ public class Start
 
                                 if (temp.equals(salt + password))
                                 {
-                                    System.out.println("User: " + x.getUserName() + " Password: " + current);
-                                    break masterloop;
+                                    System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                                    break fiveloop;
                                 }
                             }
                         }
@@ -383,6 +387,7 @@ public class Start
             }
             System.out.println("Five length character passwords complete");
 
+            sixloop:
             for (int w = 0; w < keys.size(); w++)
             {
                 for (int u = 0; u < keys.size(); u++)
@@ -401,8 +406,8 @@ public class Start
 
                                     if (temp.equals(salt + password))
                                     {
-                                        System.out.println("User: " + x.getUserName() + " Password: " + current);
-                                        break masterloop;
+                                        System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                                        break sixloop;
                                     }
                                 }
                             }
@@ -412,6 +417,7 @@ public class Start
             }
             System.out.println("Six length character passwords complete");
 
+            sevenloop:
             for (int g = 0; g < keys.size(); g++)
             {
                 for (int w = 0; w < keys.size(); w++)
@@ -432,8 +438,8 @@ public class Start
 
                                         if (temp.equals(salt + password))
                                         {
-                                            System.out.println("User: " + x.getUserName() + " Password: " + current);
-                                            break masterloop;
+                                            System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                                            break sevenloop;
                                         }
                                     }
                                 }
@@ -444,6 +450,7 @@ public class Start
             }
             System.out.println("Seven length character passwords complete");
 
+            eightloop:
             for (int a = 0; a < keys.size(); a++)
             {
                 for (int b = 0; b < keys.size(); b++)
@@ -467,8 +474,8 @@ public class Start
 
                                             if (temp.equals(salt + password))
                                             {
-                                                System.out.println("User: " + x.getUserName() + " Password: " + current);
-                                                break masterloop;
+                                                System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
+                                                break eightloop;
                                             }
                                         }
                                     }
