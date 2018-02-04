@@ -1,5 +1,9 @@
 public class User
 {
+    /**
+     * User objects are used to hold the Username, First Name, Last Name, Hashed Password, and Salt from the Unix lines
+     * in a text file.
+     */
     private String firstName;
     private String lastName;
     private String userName;
