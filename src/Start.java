@@ -292,7 +292,6 @@ public class Start
                 if (temp.equals(salt + password))
                 {
                     System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                    break;
                 }
             }
             System.out.println("One length character passwords complete");
@@ -309,7 +308,6 @@ public class Start
                     if (temp.equals(salt + password))
                     {
                         System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                        break twoloop;
                     }
                 }
             }
@@ -329,7 +327,6 @@ public class Start
                         if (temp.equals(salt + password))
                         {
                             System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                            break threeloop;
                         }
                     }
                 }
@@ -352,7 +349,6 @@ public class Start
                             if (temp.equals(salt + password))
                             {
                                 System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                                break fourloop;
                             }
                         }
                     }
@@ -378,7 +374,6 @@ public class Start
                                 if (temp.equals(salt + password))
                                 {
                                     System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                                    break fiveloop;
                                 }
                             }
                         }
@@ -407,7 +402,6 @@ public class Start
                                     if (temp.equals(salt + password))
                                     {
                                         System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                                        break sixloop;
                                     }
                                 }
                             }
@@ -439,7 +433,6 @@ public class Start
                                         if (temp.equals(salt + password))
                                         {
                                             System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                                            break sevenloop;
                                         }
                                     }
                                 }
@@ -475,7 +468,6 @@ public class Start
                                             if (temp.equals(salt + password))
                                             {
                                                 System.out.println("\nUser: " + x.getUserName() + " Password: " + current);
-                                                break eightloop;
                                             }
                                         }
                                     }
